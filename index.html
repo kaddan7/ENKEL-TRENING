@@ -1,192 +1,1092 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trening for Alle</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    h1 {
-      text-align: center;
-    }
-    .menu button {
-      margin: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      border: none;
-      background-color: #007BFF;
-      color: white;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    .menu button:hover {
-      background-color: #0056b3;
-    }
-    .section {
-      display: none;
-      margin-top: 20px;
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      background-color: white;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-    }
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-    ul ul {
-      list-style-type: circle;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ENKEL-TRENING - En moderne nettside for trening og helse.">
+    <title>ENKEL-TRENING</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Grunnleggende reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Header / navigasjon */
+        header {
+            position: fixed;
+            width: 100%;
+            background-color: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Hero-seksjon */
+        .hero {
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1594737625785-0f15139c3c1c?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+        }
+
+        .hero .cta {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .hero .cta:hover {
+            background-color: #ff3b3b;
+        }
+
+        /* Om oss seksjon */
+        .about {
+            padding: 100px 50px;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .about img {
+            max-width: 500px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .about .content {
+            max-width: 600px;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .about .btn {
+            background-color: #333;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .about .btn:hover {
+            background-color: #ff6b6b;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 
-  <h1>Trening for Alle</h1>
-  <p>Velg program for å se detaljer:</p>
+    <!-- Header -->
+    <header>
+        <div class="logo">ENKEL-TRENING</div>
+        <nav>
+            <a href="#hero">Hjem</a>
+            <a href="#about">Om oss</a>
+            <a href="#contact">Kontakt</a>
+        </nav>
+    </header>
 
-  <div class="menu">
-    <button onclick="showSection('nybegynner')">Nybegynner</button>
-    <button onclick="showSection('middels')">Middels</button>
-    <button onclick="showSection('avansert')">Avansert</button>
-    <button onclick="showSection('sykkel')">Sykkelprogram</button>
-    <button onclick="showSection('loping')">Løpeprogram</button>
-    <button onclick="showSection('skade')">Skadeforebygging</button>
-  </div>
+    <!-- Hero-seksjon -->
+    <section class="hero" id="hero">
+        <h1>Kom i form på en enkel måte</h1>
+        <p>Vi gir deg treningsprogrammer, tips og motivasjon som passer for alle – uansett nivå.</p>
+        <button class="cta">Start nå</button>
+    </section>
 
-  <!-- Nybegynner -->
-  <div id="nybegynner" class="section">
-    <h2>Nybegynnerprogram</h2>
-    <p><strong>Fokus:</strong> grunnleggende styrke, bevegelighet og kondisjon</p>
-    <p><strong>Varighet:</strong> ca. 20–30 minutter</p>
-    <ul>
-      <li><strong>Oppvarming (5 min):</strong> Gå på stedet, lett jogging, arm- og bensving</li>
-      <li><strong>Hoveddel (15–20 min):</strong>
-        <ul>
-          <li>Knebøy: 3 sett × 10 repetisjoner</li>
-          <li>Push-ups mot vegg eller knær: 3 × 8–10</li>
-          <li>Tåhev: 3 × 12</li>
-          <li>Planke på knær: 3 × 20 sek</li>
-          <li>Enkle utfall: 3 × 8 per ben</li>
-        </ul>
-      </li>
-      <li><strong>Nedtrapping (5 min):</strong> Tøying av ben, armer og rygg</li>
-    </ul>
-  </div>
+    <!-- Om oss -->
+    <section class="about" id="about">
+        <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80" alt="Trening">
+        <div class="content">
+            <h2>Om ENKEL-TRENING</h2>
+            <p>ENKEL-TRENING er en moderne treningsplattform som hjelper deg å nå dine mål med enkle, effektive øvelser. Vi kombinerer treningsprogrammer, tips, og motiverende innhold for å gjøre trening gøy og tilgjengelig for alle.</p>
+            <a href="#contact" class="btn">Kontakt oss</a>
+        </div>
+    </section>
 
-  <!-- Middels -->
-  <div id="middels" class="section">
-    <h2>Middels program</h2>
-    <p><strong>Fokus:</strong> styrke, utholdenhet og stabilitet</p>
-    <p><strong>Varighet:</strong> ca. 30–40 minutter</p>
-    <ul>
-      <li><strong>Oppvarming (5–10 min):</strong> Lett jogging, dynamisk tøying</li>
-      <li><strong>Hoveddel (20–25 min):</strong>
-        <ul>
-          <li>Knebøy med egen kroppsvekt: 3 × 12</li>
-          <li>Push-ups: 3 × 10–12</li>
-          <li>Planke: 3 × 30 sek</li>
-          <li>Utfall fremover: 3 × 10 per ben</li>
-          <li>Superman-rygghev: 3 × 12</li>
-        </ul>
-      </li>
-      <li><strong>Nedtrapping (5–10 min):</strong> Tøying og lett gange</li>
-    </ul>
-  </div>
+    <!-- Footer -->
+    <footer id="contact">
+        <p>© 2025 ENKEL-TRENING | <a href="mailto:kontakt@enkelt-trening.no">kontakt@enkelt-trening.no</a></p>
+    </footer>
+<!-- Tjenester / Treningsprogrammer -->
+<section class="services" id="services">
+    <div class="container">
+        <h2>Våre Treningsprogrammer</h2>
+        <p>Vi tilbyr enkle og effektive programmer som passer alle nivåer. Velg det som passer deg best!</p>
+        <div class="cards">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1599058917213-0b3ff9d9b68e?auto=format&fit=crop&w=400&q=80" alt="Styrketrening">
+                <h3>Styrketrening</h3>
+                <p>Enkle styrkeøvelser du kan gjøre hjemme eller på treningssenteret for å bygge muskler og styrke.</p>
+                <a href="#" class="btn-card">Les mer</a>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1594737625785-0f15139c3c1c?auto=format&fit=crop&w=400&q=80" alt="Kondisjonstrening">
+                <h3>Kondisjonstrening</h3>
+                <p>Enkle kondisjonsprogrammer som hjelper deg å forbedre utholdenhet og forbrenning.</p>
+                <a href="#" class="btn-card">Les mer</a>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1599058917213-0b3ff9d9b68e?auto=format&fit=crop&w=400&q=80" alt="Mobilitet">
+                <h3>Mobilitet & Stretching</h3>
+                <p>Programmer for å øke fleksibilitet, forebygge skader og forbedre bevegelsesmønster.</p>
+                <a href="#" class="btn-card">Les mer</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-  <!-- Avansert -->
-  <div id="avansert" class="section">
-    <h2>Avansert program</h2>
-    <p><strong>Fokus:</strong> styrke, eksplosivitet og utholdenhet</p>
-    <p><strong>Varighet:</strong> ca. 40–50 minutter</p>
-    <ul>
-      <li><strong>Oppvarming (10 min):</strong> Jogging, dynamiske bevegelser, hoppeøvelser</li>
-      <li><strong>Hoveddel (25–30 min):</strong>
-        <ul>
-          <li>Markløft med manualer eller vektstang: 3 × 8</li>
-          <li>Pull-ups eller assisterte pull-ups: 3 × 6–8</li>
-          <li>Benkpress eller push-ups med klapp: 3 × 10</li>
-          <li>Burpees: 3 × 12</li>
-          <li>Planke med sidehev: 3 × 30 sek per side</li>
-        </ul>
-      </li>
-      <li><strong>Nedtrapping (5–10 min):</strong> Lett jogging, tøying av hele kroppen</li>
-    </ul>
-  </div>
-  <!-- Sykkel -->
-  <div id="sykkel" class="section">
-    <h2>Sykkelprogram</h2>
-    <p><strong>Fokus:</strong> utholdenhet, styrke i ben og skadeforebygging</p>
-    <p><strong>Varighet:</strong> 30–60 minutter</p>
-    <ul>
-      <li><strong>Oppvarming (5–10 min):</strong> Lett sykling, gradvis økende tempo</li>
-      <li><strong>Hoveddel:</strong>
-        <ul>
-          <li>Rolig sykling: 10 min</li>
-          <li>Intervaller: 5 × 2 min hard sykling, 2 min rolig</li>
-          <li>Styrke i ben: 3 × 10 squats uten vekt eller med lett belastning</li>
-          <li>Tempo-sykling: 10–15 min jevnt høy fart</li>
-        </ul>
-      </li>
-      <li><strong>Nedtrapping (5–10 min):</strong> Rolig sykling, tøying av lår og legger</li>
-    </ul>
-  </div>
+<style>
+/* Services-seksjon */
+.services {
+    padding: 100px 50px;
+    background-color: #fff;
+    text-align: center;
+}
 
-  <!-- Løping -->
-  <div id="loping" class="section">
-    <h2>Løpeprogram</h2>
-    <p><strong>Fokus:</strong> kondisjon, utholdenhet og skadeforebygging</p>
-    <p><strong>Varighet:</strong> 20–45 minutter</p>
-    <ul>
-      <li><strong>Oppvarming (5 min):</strong> Gå/jogge lett, dynamiske bevegelser</li>
-      <li><strong>Hoveddel:</strong>
-        <ul>
-          <li>Rolig jogg: 10–15 min</li>
-          <li>Intervaller: 4 × 1–2 min rask løping, 2 min gange/jogg</li>
-          <li>Bakkeintervaller (valgfritt): 5 × 30 sek oppover, rolig ned</li>
-          <li>Fartslek: 5–10 min, varier tempo mellom rolig og rask</li>
-        </ul>
-      </li>
-      <li><strong>Nedtrapping (5 min):</strong> Gå lett, tøying av legger, lår og hofter</li>
-    </ul>
-  </div>
+.services h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
 
-  <!-- Skadeforebygging -->
-  <div id="skade" class="section">
-    <h2>Skadeforebygging</h2>
-    <p>Her finner du tips og øvelser for å forebygge vanlige skader ved løping og sykling.</p>
-    
-    <h3>🦵 Løping</h3>
-    <p><strong>Fokus:</strong> styrke, balanse og fleksibilitet for knær, ankler og legger</p>
-    <ul>
-      <li><strong>Ettbens balanse:</strong> Stå på ett ben i 30 sekunder, bytt ben. Gjenta 3 ganger per ben.</li>
-      <li><strong>Knebøy med tåhev:</strong> Utfør en knebøy, løft deretter hælene og stå på tærne. 15–20 repetisjoner.</li>
-      <li><strong>Nordic hamstring:</strong> Senk kroppen sakte fremover mens føttene holdes i bakken. Bruk hendene for støtte. 5–8 repetisjoner.</li>
-    </ul>
-    <p>Mer info: <a href="https://www.skadefri.no/idretter/loping/" target="_blank">Skadefri.no – Løping</a></p>
+.services p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-    <h3>🚴‍♂️ Sykling</h3>
-    <p><strong>Fokus:</strong> styrke i ben, kjernemuskulatur og hofter</p>
-    <ul>
-      <li><strong>Seteløft på ett ben:</strong> Løft setet sakte på ett ben, hold i 5 sek, bytt ben. 3 × 10</li>
-      <li><strong>Kjernestyrke:</strong> Planke 3 × 30 sek, sideplanke 3 × 20 sek per side</li>
-      <li><strong>Hoftestabilitet:</strong> Liggende benløft eller monster walks med strikk 3 × 12</li>
-    </ul>
-    <p>Mer info: <a href="https://www.skadefri.no/idretter/sykling/" target="_blank">Skadefri.no – Sykling</a></p>
-  </div>
+/* Kortcontainer */
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
 
-  <!-- JavaScript for å vise/skjule seksjoner -->
-  <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => section.style.display = 'none');
-      document.getElementById(sectionId).style.display = 'block';
+/* Kort */
+.card {
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.card p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.card .btn-card {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.card .btn-card:hover {
+    background-color: #ff3b3b;
+}
+
+/* Hover-effekt */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+<!-- Resultater / Kundeeksempler -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <h2>Resultater fra våre brukere</h2>
+        <p>Se hvordan ENKEL-TRENING har hjulpet våre brukere å komme i form på en enkel og effektiv måte.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1599058917213-0b3ff9d9b68e?auto=format&fit=crop&w=400&q=80" alt="Kunde 1">
+                <h3>Kunde 1</h3>
+                <p>Fra nybegynner til sterkere på bare 8 uker med våre styrketreningsprogrammer.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=400&q=80" alt="Kunde 2">
+                <h3>Kunde 2</h3>
+                <p>Økt kondisjon og utholdenhet etter 12 uker med våre kondisjonsøkter hjemme.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1599058917213-0b3ff9d9b68e?auto=format&fit=crop&w=400&q=80" alt="Kunde 3">
+                <h3>Kunde 3</h3>
+                <p>Forbedret fleksibilitet og mindre smerter med våre mobilitets- og stretchingprogrammer.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1594737625785-0f15139c3c1c?auto=format&fit=crop&w=400&q=80" alt="Kunde 4">
+                <h3>Kunde 4</h3>
+                <p>Motivert til å trene regelmessig og nå personlige mål med våre enkle treningsplaner.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Portfolio-seksjon */
+.portfolio {
+    padding: 100px 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.portfolio h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.portfolio p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid for portfolio */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Portfolio item */
+.portfolio-item {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.portfolio-item h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.portfolio-item p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Hover-effekt */
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+<!-- Tips & guider / Blogg -->
+<section class="blog" id="blog">
+    <div class="container">
+        <h2>Tips & Guider</h2>
+        <p>Få enkle og effektive tips, treningsguider og inspirasjon som gjør treningen din enklere og morsommere.</p>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=400&q=80" alt="Guide 1">
+                <div class="blog-content">
+                    <h3>5 Enkle Treningsøkter hjemme</h3>
+                    <p>Lær hvordan du kan trene effektivt hjemme uten utstyr. Perfekt for nybegynnere!</p>
+                    <a href="#" class="btn-blog">Les mer</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1599058917213-0b3ff9d9b68e?auto=format&fit=crop&w=400&q=80" alt="Guide 2">
+                <div class="blog-content">
+                    <h3>Kondisjonstrening på 20 minutter</h3>
+                    <p>Rask og enkel kondisjonstrening for travle dager som gir resultater.</p>
+                    <a href="#" class="btn-blog">Les mer</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://images.unsplash.com/photo-1594737625785-0f15139c3c1c?auto=format&fit=crop&w=400&q=80" alt="Guide 3">
+                <div class="blog-content">
+                    <h3>Stretching og mobilitet hver dag</h3>
+                    <p>Små rutiner som forbedrer fleksibilitet, forebygger skader og gjør kroppen mer smidig.</p>
+                    <a href="#" class="btn-blog">Les mer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Blogg-seksjon */
+.blog {
+    padding: 100px 50px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.blog h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.blog p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid for blogg */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Blogg-kort */
+.blog-card {
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-content {
+    padding: 20px;
+}
+
+.blog-content h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.blog-content p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.btn-blog {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-blog:hover {
+    background-color: #ff3b3b;
+}
+
+/* Hover-effekt */
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+<!-- Treningsvideoer / Video-galleri -->
+<section class="videos" id="videos">
+    <div class="container">
+        <h2>Treningsvideoer</h2>
+        <p>Lær øvelsene riktig med våre korte og enkle treningsvideoer. Perfekt for alle nivåer!</p>
+        <div class="video-grid">
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Treningsvideo 1" frameborder="0" allowfullscreen></iframe>
+                <h3>Styrketrening hjemme</h3>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Treningsvideo 2" frameborder="0" allowfullscreen></iframe>
+                <h3>Kondisjonsøkter på 20 min</h3>
+            </div>
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Treningsvideo 3" frameborder="0" allowfullscreen></iframe>
+                <h3>Stretching & Mobilitet</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Video-seksjon */
+.videos {
+    padding: 100px 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.videos h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.videos p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid for videoer */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Video-kort */
+.video-card {
+    background-color: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card iframe {
+    width: 100%;
+    height: 200px;
+}
+
+.video-card h3 {
+    font-size: 1.5rem;
+    margin: 15px 0 20px 0;
+    color: #333;
+}
+
+/* Hover-effekt */
+.video-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+<!-- Kundetilbakemeldinger / Testimonials -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <h2>Hva våre brukere sier</h2>
+        <p>Les ekte tilbakemeldinger fra våre brukere og hvordan ENKEL-TRENING har hjulpet dem.</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Takket være ENKEL-TRENING har jeg endelig fått motivasjon til å trene regelmessig. Programmet er enkelt å følge!"</p>
+                <h4>- Maria, 25</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"Fantastiske videoer og treningsprogrammer! Jeg har blitt sterkere og mer utholdende på bare 2 måneder."</p>
+                <h4>- Jonas, 30</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"Stretching-øktene har forbedret fleksibiliteten min og redusert ryggsmerter. Super nyttig!"</p>
+                <h4>- Ingrid, 27</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Testimonials-seksjon */
+.testimonials {
+    padding: 100px 50px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.testimonials h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.testimonials p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid for testimonials */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+/* Testimonial-kort */
+.testimonial-card {
+    background-color: #f4f4f4;
+    border-radius: 20px;
+    padding: 30px 20px;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card h4 {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Hover-effekt */
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+<!-- FAQ / Ofte stilte spørsmål -->
+<section class="faq" id="faq">
+    <div class="container">
+        <h2>Ofte stilte spørsmål</h2>
+        <p>Har du spørsmål om ENKEL-TRENING? Her finner du svar på de mest vanlige spørsmålene fra våre brukere.</p>
+        <div class="faq-item">
+            <button class="faq-question">Hvordan fungerer treningsprogrammet?</button>
+            <div class="faq-answer">
+                <p>Treningsprogrammet vårt er laget for å være enkelt å følge. Du velger nivå og type trening, og får en ukeplan med øvelser og videoer. Programmet kan tilpasses etter dine mål og tid.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Trenger jeg utstyr for å trene?</button>
+            <div class="faq-answer">
+                <p>Nei! De fleste programmene kan utføres hjemme uten utstyr. Vi har også alternativer med utstyr for de som vil ha ekstra utfordring.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Hvor ofte bør jeg trene?</button>
+            <div class="faq-answer">
+                <p>Vi anbefaler å trene 3–5 ganger i uken, men det viktigste er at du holder kontinuitet. Våre programmer er fleksible og kan tilpasses din timeplan.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Er programmet for nybegynnere?</button>
+            <div class="faq-answer">
+                <p>Absolutt! Vi har programmer for alle nivåer, inkludert nybegynnere. Hvert program gir detaljerte instruksjoner og videoer for å gjøre treningen enkel og trygg.</p>
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question">Kan jeg kombinere treningsprogrammer?</button>
+            <div class="faq-answer">
+                <p>Ja! Du kan kombinere styrke, kondisjon og mobilitet etter behov. Våre guider forklarer hvordan du kan kombinere programmer for best mulig resultat.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* FAQ-seksjon */
+.faq {
+    padding: 100px 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.faq h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.faq p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* FAQ-item */
+.faq-item {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    text-align: left;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    border: none;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active::after {
+    transform: rotate(45deg);
+}
+
+.faq-question:hover {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    background-color: #fff;
+    transition: max-height 0.3s ease;
+}
+
+.faq-answer p {
+    padding: 15px 0;
+    color: #555;
+    line-height: 1.6;
+}
+</style>
+
+<script>
+/* Enkel interaktivitet for FAQ */
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        question.classList.toggle('active');
+        const answer = question.nextElementSibling;
+        if (answer.style.maxHeight) {
+            answer.style.maxHeight = null;
+        } else {
+            answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+    });
+});
+</script>
+<!-- Kontakt / Skjema -->
+<section class="contact" id="contact">
+    <div class="container">
+        <h2>Kontakt oss</h2>
+        <p>Har du spørsmål, forslag eller ønsker mer informasjon? Fyll ut skjemaet under, så svarer vi så raskt som mulig.</p>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Navn</label>
+                <input type="text" id="name" name="name" placeholder="Skriv ditt navn" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-post</label>
+                <input type="email" id="email" name="email" placeholder="Skriv din e-post" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Melding</label>
+                <textarea id="message" name="message" placeholder="Skriv meldingen din" rows="6" required></textarea>
+            </div>
+            <button type="submit" class="btn-contact">Send melding</button>
+        </form>
+    </div>
+</section>
+
+<style>
+/* Kontakt-seksjon */
+.contact {
+    padding: 100px 50px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Skjema-styling */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 10px rgba(255,107,107,0.3);
+    outline: none;
+}
+
+.btn-contact {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-contact:hover {
+    background-color: #ff3b3b;
+}
+</style>
+
+<script>
+/* Enkel validering og alert ved innsending */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if(name && email && message){
+        alert('Takk for meldingen din! Vi kontakter deg snart.');
+        this.reset();
+    } else {
+        alert('Vennligst fyll ut alle feltene.');
     }
-  </script>
+});
+</script>
+<!-- Prisplaner / Pakker -->
+<section class="pricing" id="pricing">
+    <div class="container">
+        <h2>Våre Prisplaner</h2>
+        <p>Velg det abonnementet som passer deg best. Alle våre pakker gir enkel og effektiv trening hjemme eller på treningssenter.</p>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Basis</h3>
+                <p class="price">Gratis</p>
+                <ul>
+                    <li>Tilgang til grunnleggende treningsprogrammer</li>
+                    <li>Ukentlig tips og artikler</li>
+                    <li>Ingen videoer</li>
+                </ul>
+                <a href="#" class="btn-pricing">Velg Basis</a>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Standard</h3>
+                <p class="price">kr 299/mnd</p>
+                <ul>
+                    <li>Full tilgang til treningsprogrammer</li>
+                    <li>Ukentlige videoer</li>
+                    <li>Tips & guider</li>
+                    <li>Personlig fremgangssporing</li>
+                </ul>
+                <a href="#" class="btn-pricing">Velg Standard</a>
+            </div>
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <p class="price">kr 499/mnd</p>
+                <ul>
+                    <li>Alt i Standard</li>
+                    <li>1-til-1 coaching</li>
+                    <li>Tilpassede treningsprogrammer</li>
+                    <li>Eksklusive videoer og utfordringer</li>
+                </ul>
+                <a href="#" class="btn-pricing">Velg Premium</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Prisplan-seksjon */
+.pricing {
+    padding: 100px 50px;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.pricing h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.pricing p {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Grid for prisplaner */
+.pricing-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Pris-kort */
+.pricing-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    max-width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card.popular {
+    border: 3px solid #ff6b6b;
+}
+
+.pricing-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.pricing-card .price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ff6b6b;
+}
+
+.pricing-card ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.pricing-card ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.btn-pricing {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-pricing:hover {
+    background-color: #ff3b3b;
+}
+
+/* Hover-effekt */
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+</style>
+<!-- Call-to-Action / Bli medlem -->
+<section class="cta" id="cta">
+    <div class="container">
+        <h2>Er du klar for å starte?</h2>
+        <p>Bli medlem i dag og få tilgang til alle treningsprogrammer, videoer, tips og personlig fremgangssporing. Start reisen mot en sterkere og sunnere deg!</p>
+        <a href="#pricing" class="btn-cta">Bli medlem nå</a>
+    </div>
+</section>
+
+<style>
+/* CTA-seksjon */
+.cta {
+    padding: 100px 50px;
+    background: url('https://images.unsplash.com/photo-1594737625785-0f15139c3c1c?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    margin: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.cta h2 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.cta p {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 30px auto;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+    line-height: 1.8;
+}
+
+.btn-cta {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: #fff;
+    padding: 20px 50px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: #ff3b3b;
+    transform: scale(1.05);
+}
+</style>
 
 </body>
 </html>
+
